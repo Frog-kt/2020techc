@@ -33,7 +33,7 @@ if (!password_verify($_POST['password'], $row['password'])) {
 // パスワードがあっている，つまりログイン成功です。
 // 今回はログイン状態をCookieに保存します。
 // この方法はセキュリティ上難が有ります。後期で対策方法について説明します。前期の課題はこれで構いません。
-setcookie('login_id', $row['login_id']);
+setcookie('login_id', $row['login_id'], 0, '/');
 
 // ログイン完了したら会員登録完了画面に飛ばす
 header("HTTP/1.1 302 Found");
