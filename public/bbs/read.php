@@ -16,16 +16,21 @@ $rows = $select_sth->fetchAll();
   <!--
     投稿用フォーム
     読み込みページに投稿用フォームを用意してあげると利用者は便利です。
+    ログインしている場合のみ表示します。
   -->
+  <?php if(!empty($_COOKIE["login_id"])): ?>
   <form method="POST" action="./write.php" style="margin: 2em;">
     <div>
-      名前: <input type="text" name="name" value="<?php echo($_COOKIE["name"]);  ?>" required>
+      名前(ログインid): <?= htmlspecialchars($_COOKIE["login_id"]) ?>
     </div>
     <div>
       <textarea name="body" rows="5" cols="100" required></textarea>
     </div>
     <button type="submit">投稿</button>
   </form>
+  <?php else: ?>
+  投稿するには<a href="/users/login.php">ログイン</a>してください。
+  <?php endif; ?>
   <!-- 投稿用フォームここまで -->
   <hr>
 
